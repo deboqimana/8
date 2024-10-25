@@ -24,7 +24,7 @@ pygame.display.set_caption('Snake Game')
 clock = pygame.time.Clock()
 
 snake_block = 20
-snake_speed = 10
+snake_speed = 5
 
 # Font styles and score display
 font_style = pygame.font.SysFont("bahnschrift", 25)
