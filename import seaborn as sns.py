@@ -2,47 +2,59 @@ import pygame
 import time
 import random
 
-# 初始化pygame
+# Initialize pygame
 pygame.init()
 
-# 定义颜色
+# Define colors
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (50, 153, 213)
 
-# 定义窗口大小
+# Define window size
 display_width = 800
 display_height = 600
 
-# 创建游戏窗口
+# Create game window
 display = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption('贪吃蛇游戏')
+pygame.display.set_caption('Snake Game')
 
-# 时钟控制蛇的速度
+# Clock to control snake speed
 clock = pygame.time.Clock()
 
 snake_block = 20
 snake_speed = 15
 
-# 字体风格和分数显示
+# Font styles and score display
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("comicsansms", 35)
 
 def Your_score(score):
-    value = score_font.render("你的得分: " + str(score), True, blue)
+    """
+    Display the current score on the screen.
+    """
+    value = score_font.render("Your Score: " + str(score), True, blue)
     display.blit(value, [0, 0])
 
 def our_snake(snake_block, snake_list):
+    """
+    Draw the snake on the screen.
+    """
     for x in snake_list:
         pygame.draw.rect(display, black, [x[0], x[1], snake_block, snake_block])
 
 def message(msg, color):
+    """
+    Display a message on the screen.
+    """
     mesg = font_style.render(msg, True, color)
     display.blit(mesg, [display_width / 6, display_height / 3])
 
-def gameLoop():  # 主函数，控制游戏运行
+def gameLoop():
+    """
+    Main function to control the game loop.
+    """
     game_over = False
     game_close = False
 
@@ -55,7 +67,7 @@ def gameLoop():  # 主函数，控制游戏运行
     snake_List = []
     Length_of_snake = 1
 
-    # 随机生成食物的位置
+    # Randomly generate food position
     foodx = round(random.randrange(0, display_width - snake_block) / 20.0) * 20.0
     foody = round(random.randrange(0, display_height - snake_block) / 20.0) * 20.0
 
@@ -63,7 +75,7 @@ def gameLoop():  # 主函数，控制游戏运行
 
         while game_close:
             display.fill(white)
-            message("你输了！按Q退出或C继续", red)
+            message("You Lost! Press Q-Quit or C-Play Again", red)
             Your_score(Length_of_snake - 1)
             pygame.display.update()
 
